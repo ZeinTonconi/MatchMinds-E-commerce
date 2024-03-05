@@ -1,0 +1,78 @@
+.navbar {
+  background-color: hsl(0, 0%, 49%);
+  padding: 15px 20px; /* Aumentar un poco el espacio alrededor del contenido */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 70px;
+  width: 100vw; /* Extender el navbar al ancho completo de la ventana */
+  position: fixed; /* Fijar el navbar en la parte superior de la pantalla */
+  top: 0; /* Alinear el navbar en la parte superior de la pantalla */
+  left: 0; /* Alinear el navbar al borde izquierdo de la ventana */
+}
+
+/* Alineación del contenido del navbar */
+.logo, .navMenu {
+  display: flex;
+  align-items: center;
+}
+
+/* Estilos para el logo */
+.logo {
+  font-size: 36px; /* Aumentar el tamaño de la fuente */
+  font-family: Arial, Helvetica, sans-serif;
+  color: white; /* Cambiar el color del texto a blanco */
+  text-decoration: none; /* Eliminar subrayado del enlace */
+}
+
+
+/* ul  */
+.navMenu {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 60px;
+  list-style-type: none; /* Eliminar los puntos de la lista */
+  margin-right: 100px; /* Mover los elementos a la izquierda */
+}
+
+
+.navLink {
+  font-size: 18px; /* Aumentar el tamaño de la fuente de los enlaces */
+  color: white; /* Cambiar el color del texto a blanco */
+  text-decoration: none; /* Eliminar subrayado del enlace */
+}
+
+/* Estilo para los enlaces activos */
+.navLink.active {
+  font-weight: bold; /* Hacer que el enlace activo sea más grueso */
+}
+
+/* Estilos para la barra de búsqueda */
+.searchBarContainer {
+  padding: 8px; /* Aumentar el padding alrededor de la barra de búsqueda */
+  background-color: rgb(231, 224, 224); /* Cambiar el color de fondo de la barra de búsqueda */
+  border-radius:20px; /* Agregar bordes redondeados a la barra de búsqueda */
+}
+
+.searchBar {
+  padding: 6px; /* Aumentar el padding dentro de la barra de búsqueda */
+  border: none; /* Eliminar el borde de la barra de búsqueda */
+  width: 200px; /* Establecer un ancho fijo para la barra de búsqueda */
+  outline: none; /* Eliminar el borde al hacer clic en la barra de búsqueda */
+  background-color: transparent; /* Eliminar el fondo por defecto de la barra de búsqueda */
+}
+
+
+.searchButton {
+  padding: 8px 12px; /* Aumentar el padding dentro del botón de búsqueda */
+  background-color: #007bff; /* Cambiar el color de fondo del botón de búsqueda */
+  color: white; /* Cambiar el color del texto del botón de búsqueda */
+  border: none; /* Eliminar el borde del botón de búsqueda */
+  border-radius: 5px; /* Agregar bordes redondeados al botón de búsqueda */
+  cursor: pointer; /* Cambiar el cursor al pasar sobre el botón de búsqueda */
+}
+
+.searchButton:hover {
+  background-color: #0056b3; /* Cambiar el color de fondo del botón de búsqueda al pasar el cursor */
+}

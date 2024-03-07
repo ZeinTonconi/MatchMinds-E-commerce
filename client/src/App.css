@@ -1,13 +1,52 @@
 .app-container {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-  }
+  display: flex;
+  flex-direction: column;
+}
+
+.main-content {
+  display: flex;
+  flex-wrap: wrap; /* This is the key change to display items horizontally and vertically */
+  justify-content: center;
+  align-items: center;
+  overflow: auto;
+}
+
+.NavBar {
+  position: relative;
+  z-index: 1;
+}
+
+.MenuItem {
+  z-index: 2;
+  margin: 10px; /* Add margin between menu items */
+}
+
+.footer {
+  position: relative;
+}
+
+.Card {
+  width: 300px; /* Adjust width for wider cards */
+  height: 400px; /* Adjust height for taller cards */
+  margin: 20px; /* Aumenta el margen en todos los lados */
+  border-radius: 10px; /* Add some roundness to the corners */
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); /* Add a subtle shadow for depth */
   
-  .main-content {
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+}
+
+.grid {
+  gap: 30px; /* Aumenta el espacio entre las tarjetas */
+}
+
+/* Media Queries for responsive layout */
+
+@media (max-width: 768px) {
+  .Card {
+    width: 250px; /* Adjust width for smaller screens */
   }
+
+  .grid {
+    gap: 20px; /* Reduce gap between cards on smaller screens */
+  }
+}
+

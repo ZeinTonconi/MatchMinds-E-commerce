@@ -2,6 +2,7 @@
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  margin-top: 150px; /*es para poenr ajustar la diferencia de la distancia entre un objeto y otro en la parte supeior*/
 }
 
 .main-content {
@@ -10,4 +11,16 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin-bottom: 50px; /* Ajusta este valor para controlar la distancia */
+}
+
+
+.header {
+  position: relative;
+  z-index: 1;
+}
+
+.MenuItem {
+
+  z-index: 2;
 }

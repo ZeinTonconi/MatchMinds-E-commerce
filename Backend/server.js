@@ -3,7 +3,7 @@
 
 const express = require('express')
 const cors = require('cors')
-// const sequelize = require('./database/config.js')
+const sequelize = require('./database/config.database')
 
 
 // require('./models/index.models')
@@ -22,13 +22,16 @@ class Server {
     // this.taskPath = '/api/tasks'
     this.productsPath = '/api/products';
 
+    
+
     this.init()
   }
 
   async init () {
-    // await sequelize.sync({ force: false })
+    await sequelize.sync({ force: false })
     this.middlewares()
     this.routes()
+
   }
 
 

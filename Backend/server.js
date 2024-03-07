@@ -6,7 +6,7 @@ const cors = require('cors')
 const sequelize = require('./database/config.database')
 
 
-// require('./models/index.models')
+require('./models/index.models')
 
 
 
@@ -18,11 +18,8 @@ class Server {
     // this.port = process.env.APP_PORT
     this.app = express()
 
-    // Path de mis servicios
-    // this.taskPath = '/api/tasks'
     this.productsPath = '/api/products';
-
-    
+    this.authPath = '/api/auth';
 
     this.init()
   }
@@ -33,7 +30,6 @@ class Server {
     this.routes()
 
   }
-
 
   middlewares () {
     this.app.use(cors())
@@ -53,6 +49,8 @@ class Server {
   routes () {
     
     this.app.use(this.productsPath, require('./routes/products.routes'));
+    this.app.use(this.authPath, require('./routes/auth.routes'));  
+
   }
 
   start () {

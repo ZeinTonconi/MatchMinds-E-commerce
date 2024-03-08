@@ -84,7 +84,7 @@ const Main = () => {
         <div className='w-full relative'>
             <div className='sticky top-0 z-10'>
                 <div className='header flex justify-beetween items-center p-4 bg-white'>
-                    <h1 className='text-3x1 font-bold'>8kra Shop</h1>
+                    <h1 className='text-3x1 font-bold'> MatchMinds </h1>
                     <div className='search flex justify-between items-center px-5 py-2 bg-gray-100 rounded'>
                         <input type='text' placeholder='Search product' className='bg-transparent outline-0'
                         onChange={searchHandler}/>

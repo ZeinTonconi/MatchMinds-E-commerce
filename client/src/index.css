@@ -1,26 +1,21 @@
-.app-container {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-  margin-top: 150px; /*es para poenr ajustar la diferencia de la distancia entre un objeto y otro en la parte supeior*/
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.categories{
+    overflow: overlay;
+}
+.categories ::-webkit-scrollbar{
+    width: 6px;
 }
 
-.main-content {
-  flex-grow: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 50px; /* Ajusta este valor para controlar la distancia */
+.categories ::-webkit-scrollbar-thumb{
+    background-color: rgb(159, 159, 159);
+    border-radius: 20px;
 }
 
-
-.header {
-  position: relative;
-  z-index: 1;
-}
-
-.MenuItem {
-
-  z-index: 2;
+.categories ::-webkit-scrollbar-track{
+    margin: 10px;
+    border-radius: 20px;
+    background-color: transparent;
 }

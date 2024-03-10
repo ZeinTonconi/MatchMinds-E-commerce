@@ -3,7 +3,6 @@ import { Home } from './pages/Home'
 import { Cart } from './pages/Cart'
 import { Favorites } from './pages/Favorites'
 import { Order } from './pages/Order'
-import { Description } from './pages/Description'
 // import PropTypes from 'prop-types'; 
 
 import {
@@ -16,16 +15,22 @@ import {
 import Sidebar from './components/SideBar'
 import AuthService from './services/auth.service'
 import Product from './pages/Product'
+import CartService from './services/cart.service'
 
 
-const authServiceContext = createContext();
+const appContext = createContext();
+// const cartContext = createContext();
 
 
 function App({ children }) {
 
+  const [cartService, setCartService] = useState(new CartService([]));
+  cartService.setUpdateCart(setCartService)
+
   const [authService, setAuthService] = useState(new AuthService())
 
-  const contextAuth = {authService, setAuthService}
+  const app = {authService, setAuthService, 
+              cartService, setCartService}
 
   const router = createBrowserRouter(
     createRoutesFromElements(
@@ -41,10 +46,10 @@ function App({ children }) {
   )
     return (
       <div className='App'>
-        <authServiceContext.Provider value={contextAuth}>
+        <appContext.Provider value={app}>
           {children}
           <RouterProvider router={router}/>
-        </authServiceContext.Provider>
+        </appContext.Provider>
       </div>
     )
 }
@@ -69,8 +74,8 @@ const Root = ()=>{
 
 // Call this fucntion in order to use authService (user)
 export function useAuth(){
-  const {authService, setAuthService} = useContext(authServiceContext);
-
+  
+  const {authService, setAuthService} = useContext(appContext);
 
   const updateAuthState = () => setAuthService(prevAuthService => 
     {
@@ -83,4 +88,10 @@ export function useAuth(){
 
 
   return {authService, updateAuthState}
+}
+
+export function useCart(){
+
+  const {cartService, setCartService} = useContext(appContext);
+  return {cartService, setCartService}
 }

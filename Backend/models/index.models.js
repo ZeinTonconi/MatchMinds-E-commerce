@@ -1,5 +1,7 @@
 
-const User = require('./User', './Product', './Cart')
+const User = require('./User')
+const Product = require('./Product')
+const Cart = require('./Cart')
 
 const database = {
     user: User,

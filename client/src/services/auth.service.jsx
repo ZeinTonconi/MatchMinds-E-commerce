@@ -22,27 +22,33 @@ class AuthService {
         this.state = this.state.logout();
     }
 
-    loginService(email, password) {
-        // this.user = {name: "Zeincho"}
-        // localStorage.setItem('user',JSON.stringify({name: "Zeincho"}))
-        // this.state = this.state.login();
-        
-        fetch('localhost/api/auth/login', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({email,password})
-        })
-        .then(response => response.json())
-        .then(data => {
-            localStorage.setItem('user',data.user)
-            return data.user;
-        })
-        .catch(error => {
+    async loginService(email, password) {
+
+        try {
+            const response = await fetch('http://localhost:8080/api/auth/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({email,password})
+            });
+            if(!response)
+                throw new Error("Error with the network")
+            console.log(response)
+            const responseData = await response.json();
+            const {msg, user} = responseData
+            if(user){
+                await localStorage.setItem('user', JSON.stringify(user))
+                this.state = this.state.login()
+                return user
+            }
+            console.log(responseData)
+            throw new Error(msg)
+        } catch (error) {
             console.log(error)
             return null
-        });
+        }
+        
     }
 
 }

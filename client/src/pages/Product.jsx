@@ -1,24 +1,43 @@
+import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom'; // Importa useParams
+import { products } from '../data/data'; // Importa los productos desde data.js
+import { NavLink } from "react-router-dom";
+import { Link } from 'react-router-dom'; // Import Link and useNavigate
+
 
 export default function Product() {
-    
-    const imageUrl = '/watch.jpg'
-    const description = "Watch"
+  const { title } = useParams(); // Usa useParams para obtener los parámetros de la URL
+  const [product, setProduct] = useState(null);
 
+  useEffect(() => {
+    if (title) {
+      const foundProduct = products.find((product) => product.title.toLowerCase() === title.toLowerCase());
+      if (foundProduct) {
+        setProduct(foundProduct);
+      } else {
+        setProduct(null);
+      }
+    }
+  }, [title]);
+
+  if (!product) {
+    return <div>Product not found</div>;
+  }
     return (
         <div className="flex">
             <div className="w-1/2">
-                <img src={imageUrl} alt="Product" className="w-full h-auto" />
+                <img src={product.img} alt="Product" className="w-full h-auto" />
             </div>
             <div className="w-1/2 p-4">
                 <div className="mx-auto max-w-2xl px-4 pb-16 pt-10 sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:grid-rows-[auto,auto,1fr] lg:gap-x-8 lg:px-8 lg:pb-24 lg:pt-16">
                     <div className="lg:col-span-2 lg:border-r lg:border-gray-200 lg:pr-8">
-                        <h1 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">Basic Tee 6-Pack</h1>
+                        <h1 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">{product.title}</h1>
                     </div>
                 </div>
 
                 <div className="mt-4 lg:row-span-3 lg:mt-0">
                     <h2 className="sr-only">Product information</h2>
-                    <p className="text-3xl tracking-tight text-gray-900">$192</p>
+                    <p className="text-3xl tracking-tight text-gray-900">{product.price}.00$</p>
                 </div>
 
                
@@ -29,7 +48,7 @@ export default function Product() {
                         <h3 className="sr-only">Description</h3>
 
                         <div className="space-y-6">
-                            <p className="text-base text-gray-900">The Basic Tee 6-Pack allows you to fully express your vibrant personality with three grayscale options. Feeling adventurous? Put on a heather gray tee. Want to be a trendsetter? Try our exclusive colorway: &quot;Black&quot;. Need to add an extra pop of color to your outfit? Our white tee has you covered.</p>
+                            <p className="text-base text-gray-900">{product.description}</p>
                         </div>
                     </div>
 
@@ -92,8 +111,17 @@ export default function Product() {
                     </div>
                     </fieldset>
                 </div> */}
-
-                <button type="submit" className="mt-10 flex  items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Add to bag</button>
+                
+                <NavLink to='/'>
+                    <button className="mt-10 flex  items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+                        Return to the principal page.
+                        </button>
+                </NavLink>
+                <Link to='/cart'>
+                    <button className="mt-10 flex  items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+                        Buy
+                    </button>
+                </Link>
                 </form>
 
             </div>
@@ -127,4 +155,3 @@ const ColorOption = ({ colorName, colorClass }) => {
       </label>
     );
   };
-  

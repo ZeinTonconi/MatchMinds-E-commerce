@@ -1,14 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { CiSearch, CiShoppingCart } from 'react-icons/ci';
 import { Link, useNavigate } from 'react-router-dom'; // Import Link and useNavigate
-import watch from '../assets/watch.jpg'
-import laptop from '../assets/watch.jpg'
-import keyboard from '../assets/watch.jpg'
-import sunGlass from '../assets/watch.jpg'
-import leatherWatch from '../assets/watch.jpg'
-import mouse from '../assets/watch.jpg'
-import monitor from '../assets/watch.jpg'
+import { products } from '../data/data.js'; // Import products from data.js
 import Login from './Login'
+
 import { useCart } from '../App';
 
 

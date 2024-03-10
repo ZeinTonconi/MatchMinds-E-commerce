@@ -4,7 +4,7 @@ const User = require('./User', './Product', './Cart')
 const database = {
     user: User,
     product: Product,
-    cart: Cart
+    cart: Cart,
 }
 
 module.exports = {

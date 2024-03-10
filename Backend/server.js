@@ -21,7 +21,7 @@ class Server {
     this.productsPath = '/api/products';
     this.authPath = '/api/auth';
     //1er paso agregar path
-    this.cart = '/api/cart';
+    this.cartPath = '/api/cart';
 
     this.init()
   }

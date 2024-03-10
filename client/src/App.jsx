@@ -76,7 +76,6 @@ const Root = ()=>{
 export function useAuth(){
   
   const {authService, setAuthService} = useContext(appContext);
-  console.log(authService)
 
   const updateAuthState = () => setAuthService(prevAuthService => 
     {

@@ -19,7 +19,6 @@ async function getAllProducts(){
           throw new Error('Network response was not ok');
         }
         const data = await response.json();
-        console.log(data.products)
         return data.products;
       } catch (error) {
         console.error('There was a problem with the fetch operation:', error);
@@ -33,19 +32,7 @@ const Main =  () => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
-    useEffect(() => {
-        const fetchData = async () => {
-          try {
-             setProducts(await getAllProducts())
-          } catch (error) {
-            setError(error);
-          } finally {
-            setLoading(false);
-          }
-        };
-        fetchData();
-      }, []);
-
+   
     const {cartService, setCartService} = useCart();
 
     const [showMessage, setShowMessage] = useState(false);
@@ -75,6 +62,25 @@ const Main =  () => {
     const handleProductDetails = (product) => {
         navigate(`/product/${product.title}`, { state: product }); // Pass product as state
     };
+
+
+    useEffect(() => {
+        const fetchData = async () => {
+          try {
+            const allProducts = await getAllProducts();
+             setProducts(allProducts)
+             
+             setFilteredProducts(allProducts)
+          } catch (error) {
+            setError(error);
+          } finally {
+            setLoading(false);
+          }
+        };
+        fetchData();
+      }, []);
+
+
     if (loading) {
         return <div>Loading...</div>;
     }
@@ -82,7 +88,6 @@ const Main =  () => {
     if (error) {
         return <div>Error: {error.message}</div>;
     }
-    console.log({Products, filteredProducts})
     return(
         <div className='w-full relative'>
             <div className='sticky top-0 z-10'>

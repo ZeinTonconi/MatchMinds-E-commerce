@@ -3,10 +3,10 @@ const { Product } = require('../models/index.models');
 const getAllProducts = async (req, res) => {
   try {
     // Obtener todos los productos de la base de datos
-    const productos = await Product.findAll();
+    const products = await Product.findAll();
 
     // Enviar la lista de productos como respuesta
-    res.json({ productos });
+    res.status(200).json({ products });
   } catch (error) {
     console.error('Error al obtener todos los productos:', error);
     res.status(500).json({ error: 'Error interno del servidor.' });

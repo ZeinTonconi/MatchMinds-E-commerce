@@ -29,7 +29,7 @@ class Server {
   async init () {
     // force: true => Borra toda la BD y crea las tablas todo de cero
     // force: false => Si no existe una table puuuum
-    await sequelize.sync({ force: true })
+    await sequelize.sync({ force: false })
     this.middlewares()
     this.routes()
 

@@ -1,6 +1,7 @@
 
 import {AiFillDelete} from 'react-icons/ai'
 import {BsArrowLeft} from 'react-icons/bs'
+import { NavLink } from "react-router-dom";
 
 const CartItems = () => {
     return(
@@ -47,10 +48,12 @@ const CartItems = () => {
                             </tbody>
                         </table>
                         <div className='my-5'>
+                            <NavLink to='/'>
                             <button className='flex items-center space-x-3 bg-gray-200 font-semibold rounded p-2'>
                                 <BsArrowLeft/>
                                 <span>Continue Shopping</span>
                             </button>
+                            </NavLink>
                         </div>
                     </div>
                     <div className='w-[40%] h-fit border rounded p-5 space-y-5'>

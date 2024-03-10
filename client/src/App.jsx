@@ -3,6 +3,7 @@ import { Home } from './pages/Home'
 import { Cart } from './pages/Cart'
 import { Favorites } from './pages/Favorites'
 import { Order } from './pages/Order'
+import { Description } from './pages/Description'
 // import PropTypes from 'prop-types'; 
 
 import {
@@ -14,6 +15,7 @@ import {
 } from 'react-router-dom'
 import Sidebar from './components/SideBar'
 import AuthService from './services/auth.service'
+import Product from './pages/Product'
 
 
 const authServiceContext = createContext();
@@ -32,6 +34,7 @@ function App({ children }) {
         <Route path='/cart' element={<Cart/>}/>
         <Route path='/favs' element={<Favorites/>}/>
         <Route path='/orders' element={<Order/>}/>
+        <Route path='/product' element={<Product/>}/>
         {/* <Route path='/profile' element={<Profile/>}/> */}
       </Route>
     )

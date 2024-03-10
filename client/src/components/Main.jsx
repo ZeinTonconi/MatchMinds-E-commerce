@@ -1,5 +1,6 @@
-import React, {useState} from 'react'
-import { CiSearch, CiShoppingCart } from 'react-icons/ci'
+import React, { useState } from 'react';
+import { CiSearch, CiShoppingCart } from 'react-icons/ci';
+import { Link, useNavigate } from 'react-router-dom'; // Import Link and useNavigate
 import watch from '../assets/watch.jpg'
 import laptop from '../assets/watch.jpg'
 import keyboard from '../assets/watch.jpg'
@@ -17,60 +18,70 @@ const Main = () => {
             title:'Sun Glasses',
             description: 'lorem impsum dolar',
             price:40,
+            path: '../Description',
         },
         {
             img:sunGlass,
             title:'lol',
             description: 'lorem impsum dolar',
             price:40,
+            path: '/product/sun-glasses',
         },
         {
             img:sunGlass,
             title:'Sun Glasses',
             description: 'lorem impsum dolar',
             price:40,
+            path: '/product/sun-glasses',
         },
         {
             img:sunGlass,
             title:'Sun Glasses',
             description: 'lorem impsum dolar',
             price:40,
+            path: '/product/sun-glasses',
         },
         {
             img:sunGlass,
             title:'Sun Glasses',
             description: 'lorem impsum dolar',
             price:40,
+            path: '/product/sun-glasses',
         },
         {
             img:sunGlass,
             title:'Sun Glasses',
             description: 'lorem impsum dolar',
             price:40,
+            path: '/product/sun-glasses',
         },
         {
             img:sunGlass,
             title:'Sun Glasses',
             description: 'lorem impsum dolar',
             price:40,
+            path: '/product/sun-glasses',
         },
         {
             img:sunGlass,
             title:'Sun Glasses',
             description: 'lorem impsum dolar',
             price:40,
+            path: '/product/sun-glasses',
         },
         {
             img:sunGlass,
             title:'Sun Glasses',
             description: 'lorem impsum dolar',
             price:40,
+            path: '/product/sun-glasses',
         },
         {
             img:sunGlass,
             title:'Sun Glasses',
             description: 'lorem impsum dolar',
             price:40,
+            path: '/product/sun-glasses',
         },
         
     ]
@@ -82,6 +93,21 @@ const Main = () => {
             setFilteredProducts(filteredArray)
         }
     }
+    /**INTERACTIVE */
+    const navigate = useNavigate(); // Use useNavigate from react-router-dom
+
+    const handleAddToCart = (product) => {
+    // Implement logic to add product to cart (optional for this example)
+    console.log('Product added to cart:', product);
+
+    // Optionally, redirect to the cart page after adding the product
+    // navigate('/cart'); // Assuming you have a cart page
+    };
+    const handleProductDetails = (product) => {
+        navigate(`/product/${product.title}`, { state: product }); // Pass product as state
+    };
+
+
     return(
         <div className='w-full relative'>
             <div className='sticky top-0 z-10'>
@@ -129,11 +155,16 @@ const Main = () => {
                         <div key={idx} className='product h-[300px] bg-white drop-shadow-2x1 p-2 border'>
                         <img src={product.img} alt="" className='w-full h-[60%] object-cover p-2'/>
                         <div className='m-2 bg-gray-100 p-2'>
+                            
+                            <Link to= {`/product/${product.title}`} onClick={() => handleProductDetails(product)}>
                             <h1 className='text-xl font-semibold'>{product.title}</h1>
+                            </Link>
                             <p className='text-sm'>{product.description}</p>
                             <div className='flex justify-betweem items-center'>
                                 <p className='text-xl font-bold'>{product.price}.00</p>
+                                <Link to='/cart' onClick={() => handleAddToCart(product)}>
                                 <CiShoppingCart size={'1.4rem'}/>
+                                </Link>
                             </div>
                         </div>
                     </div>
@@ -142,6 +173,7 @@ const Main = () => {
 
             </div>
         </div>
+
     )
 }
 

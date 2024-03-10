@@ -64,7 +64,7 @@ const Root = ()=>{
 //   children: PropTypes.node.isRequired, // Ensure children is of type 'node' and is required
 // };
 
-
+// Call this fucntion in order to use authService (user)
 export function useAuth(){
   const {authService, setAuthService} = useContext(authServiceContext);
 

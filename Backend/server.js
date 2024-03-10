@@ -20,12 +20,16 @@ class Server {
 
     this.productsPath = '/api/products';
     this.authPath = '/api/auth';
+    //1er paso agregar path
+    this.cart = '/api/cart';
 
     this.init()
   }
 
   async init () {
-    await sequelize.sync({ force: false })
+    // force: true => Borra toda la BD y crea las tablas todo de cero
+    // force: false => Si no existe una table puuuum
+    await sequelize.sync({ force: true })
     this.middlewares()
     this.routes()
 
@@ -49,7 +53,9 @@ class Server {
   routes () {
     
     this.app.use(this.productsPath, require('./routes/products.routes'));
-    this.app.use(this.authPath, require('./routes/auth.routes'));  
+    this.app.use(this.authPath, require('./routes/auth.routes')); 
+    // 2do paso declarar el route
+    // this.app.use(this.cart, )
 
   }
 

@@ -1,9 +1,8 @@
 
 
 const getAllProducts = (req, res) => {
-    res.status(200).json({
-        mgs: "Todos los productos"
-    })
+    // Hacer la peticion de obtener todos los productos
+    
 }
 
 module.exports = {

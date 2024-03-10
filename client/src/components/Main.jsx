@@ -7,6 +7,8 @@ import sunGlass from '../assets/watch.jpg'
 import leatherWatch from '../assets/watch.jpg'
 import mouse from '../assets/watch.jpg'
 import monitor from '../assets/watch.jpg'
+import Login from './Login'
+
 
 const Main = () => {
     let Products = [
@@ -83,14 +85,19 @@ const Main = () => {
     return(
         <div className='w-full relative'>
             <div className='sticky top-0 z-10'>
-                <div className='header flex justify-beetween items-center p-4 bg-white'>
+
+                <div className='header flex justify-between items-center p-4 bg-white'>
                     <h1 className='text-3x1 font-bold'> MatchMinds </h1>
-                    <div className='search flex justify-between items-center px-5 py-2 bg-gray-100 rounded'>
-                        <input type='text' placeholder='Search product' className='bg-transparent outline-0'
+                    <div className='search flex justify-between items-center px-5 py-2 bg-gray-100 rounded mx-auto max-w-4xl'>
+                        <input type='text' placeholder='Search product' className='bg-transparent outline-0 mx-auto max-w-4xl'
                         onChange={searchHandler}/>
                         <button onClick={()=>searchHandler}><CiSearch/></button>
                     </div>
+                    <div className='flex justify-end'>
+                        <Login/>
+                    </div>
                 </div>
+
                 <div className='categories bg-white w-full flex justify-between space-x-8 px-2 py-10'>
                     <div className='bg-black text-white px-5 py-2 rounded-full drop-shadow-xl'>
                         <p> Watches </p>

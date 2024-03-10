@@ -1,4 +1,4 @@
-import React from 'react'
+
 import {AiFillDelete} from 'react-icons/ai'
 import {BsArrowLeft} from 'react-icons/bs'
 

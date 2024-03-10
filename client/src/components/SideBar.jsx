@@ -1,8 +1,11 @@
-import React from 'react'
+
 import {HiOutlineMenuAlt2,HiOutlineHome} from 'react-icons/hi'
 import {CiShoppingCart, CiDeliveryTruck} from 'react-icons/ci'
 import {IoHeartOutline} from 'react-icons/io5'
+
 import {NavLink} from 'react-router-dom'
+
+
 const Sidebar = () => {
     return(
         <div className='fixed top-0 left-0 h-screen p-2 bg-gray-100'>
@@ -45,6 +48,15 @@ const Sidebar = () => {
                     </NavLink>
                 </li>
 
+                {/* <li>
+                    <NavLink to='/profile'>
+                        <button>
+                            <RxAvatar size={'1.5rem'}>
+
+                            </RxAvatar>
+                        </button>
+                    </NavLink>
+                </li> */}
             </ul>
         </div>
     )

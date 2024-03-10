@@ -104,7 +104,7 @@ const Main = () => {
     // navigate('/cart'); // Assuming you have a cart page
     };
     const handleProductDetails = (product) => {
-        navigate(`/description/${product.title}`, { state: product }); // Pass product as state
+        navigate(`/product/${product.title}`, { state: product }); // Pass product as state
     };
 
 
@@ -156,7 +156,7 @@ const Main = () => {
                         <img src={product.img} alt="" className='w-full h-[60%] object-cover p-2'/>
                         <div className='m-2 bg-gray-100 p-2'>
                             
-                            <Link to= {`/description/${product.title}`} onClick={() => handleProductDetails(product)}>
+                            <Link to= {`/product/${product.title}`} onClick={() => handleProductDetails(product)}>
                             <h1 className='text-xl font-semibold'>{product.title}</h1>
                             </Link>
                             <p className='text-sm'>{product.description}</p>

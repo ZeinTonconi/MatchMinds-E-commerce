@@ -4,13 +4,12 @@ const { Sequelize } = require('sequelize')
 const dbConnection = () => {
     const infoDB = {
         name: "ecommerce", // DB name
-        user: "root", // user DB
-        password: "charmander1", // password DB
+        user: "root1", // user DB
+        password: "alexelmejor", // password DB
         host: "localhost", // host DB
         dialect: "mysql", // Type DB
         port: 3306 // Port DB
     }
-
 
   const sequelize = new Sequelize(infoDB.name, infoDB.user, infoDB.password, {
     host: infoDB.host,

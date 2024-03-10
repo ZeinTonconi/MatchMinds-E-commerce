@@ -11,9 +11,11 @@ const Sidebar = () => {
         <div className='fixed top-0 left-0 h-screen p-2 bg-gray-100'>
             <ul className='p-5 space-y-8'>
                 <li>
+                    <NavLink to='/login'>
                     <button>
                         <HiOutlineMenuAlt2 size={'1.5rem'}/>
                     </button>
+                    </NavLink>
                 </li>
 
                 <li>

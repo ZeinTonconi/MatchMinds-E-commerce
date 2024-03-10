@@ -55,6 +55,9 @@ const Main =  () => {
 
     };
     const handleProductDetails = (product) => {
+
+        localStorage.setItem('actualProduct', JSON.stringify(product))
+
         navigate(`/product/${product.title}`, { state: product }); // Pass product as state
     };
 

@@ -1,0 +1,11 @@
+{
+  "dependencies": {
+    "mariadb": "^3.2.3",
+    "mysql2": "^3.9.2",
+    "oracledb": "^6.3.0",
+    "pg-hstore": "^2.3.4",
+    "sequelize": "^6.37.1",
+    "sqlite3": "^5.1.7",
+    "tedious": "^18.1.0"
+  }
+}

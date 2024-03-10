@@ -53,7 +53,8 @@ class Server {
   routes () {
     
     this.app.use(this.productsPath, require('./routes/products.routes'));
-    this.app.use(this.authPath, require('./routes/auth.routes')); 
+    this.app.use(this.authPath, require('./routes/auth.routes'));
+    this.app.use(this.cartPath, require('./routes/cart.routes')); 
     // 2do paso declarar el route
     // this.app.use(this.cart, )
 

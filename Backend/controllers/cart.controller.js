@@ -8,13 +8,13 @@ const addToCart = async (req, res) => {
     const user = await User.findByPk(userId);
     const product = await Product.findByPk(productId);
 
-    if (!user || !product) {
-      return res.status(404).json({ mensaje: 'Usuario o producto no encontrado.' });
-    }
-
+    // if (!user /*|| !product*/) {
+    //   return res.status(404).json({ mensaje: 'Usuario o producto no encontrado.' });
+    // }
+    console.log({product, hasValue:(!product)})
     // Agregar el producto al carrito del usuario
     await user.addProduct(product, { through: { quantity } });
-
+    
     res.json({ mensaje: 'Producto agregado al carrito correctamente.' });
   } catch (error) {
     console.error('Error al agregar producto al carrito:', error);

@@ -3,7 +3,9 @@
 
 const express = require('express')
 const cors = require('cors')
-const sequelize = require('./database/config.database')
+const sequelize = require('./database/config.database');
+const insertProducts = require('./IntroDeData/IntroProdData');
+const insertUsers = require('./IntroDeData/IntroUserData');
 
 
 require('./models/index.models')
@@ -29,7 +31,9 @@ class Server {
   async init () {
     // force: true => Borra toda la BD y crea las tablas todo de cero
     // force: false => Si no existe una table puuuum
-    await sequelize.sync({ force: false })
+    await sequelize.sync({ force: true})
+    await insertProducts()
+    await insertUsers()
     this.middlewares()
     this.routes()
 

@@ -3,22 +3,43 @@ import { useParams } from 'react-router-dom'; // Importa useParams
 import { products } from '../data/data'; // Importa los productos desde data.js
 import { NavLink } from "react-router-dom";
 import { Link } from 'react-router-dom'; // Import Link and useNavigate
+import { useCart } from '../App';
 
 
 export default function Product() {
-  const { title } = useParams(); // Usa useParams para obtener los parámetros de la URL
-  const [product, setProduct] = useState(null);
+ 
+    const {cartService, } = useCart();
 
-  useEffect(() => {
-    if (title) {
-      const foundProduct = products.find((product) => product.title.toLowerCase() === title.toLowerCase());
-      if (foundProduct) {
-        setProduct(foundProduct);
-      } else {
-        setProduct(null);
-      }
-    }
-  }, [title]);
+    console.log(cartService)
+
+    const [, setShowMessage] = useState(false);
+
+    const product = JSON.parse(localStorage.getItem('actualProduct'))
+//     const { title } = useParams(); // Usa useParams para obtener los parámetros de la URL
+//   const [product, setProduct] = useState(null);
+
+//   useEffect(() => {
+//     if (title) {
+//       const foundProduct = products.find((product) => product.title.toLowerCase() === title.toLowerCase());
+//       if (foundProduct) {
+//         setProduct(foundProduct);
+//       } else {
+//         setProduct(null);
+//       }
+//     }
+//   }, [title]);
+
+    const handleAddToCart = async (product) => {
+
+        await cartService.addProduct(product)
+
+        setShowMessage(true)
+        setTimeout(() => {
+            setShowMessage(false)
+        }, 2000)
+
+
+    };
 
   if (!product) {
     return <div>Product not found</div>;
@@ -26,12 +47,12 @@ export default function Product() {
     return (
         <div className="flex">
             <div className="w-1/2">
-                <img src={product.img} alt="Product" className="w-full h-auto" />
+                <img src={product.nameOfImage} alt="Product" className="w-full h-auto" />
             </div>
             <div className="w-1/2 p-4">
                 <div className="mx-auto max-w-2xl px-4 pb-16 pt-10 sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:grid-rows-[auto,auto,1fr] lg:gap-x-8 lg:px-8 lg:pb-24 lg:pt-16">
                     <div className="lg:col-span-2 lg:border-r lg:border-gray-200 lg:pr-8">
-                        <h1 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">{product.title}</h1>
+                        <h1 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">{product.name}</h1>
                     </div>
                 </div>
 
@@ -117,11 +138,11 @@ export default function Product() {
                         Return to the principal page.
                         </button>
                 </NavLink>
-                <Link to='/cart'>
-                    <button className="mt-10 flex  items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
-                        Buy
-                    </button>
-                </Link>
+                <button className="mt-10 flex  items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                        onClick={() => handleAddToCart(product)}
+                >
+                    Buy
+                </button>
                 </form>
 
             </div>

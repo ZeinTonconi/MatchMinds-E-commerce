@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { CiSearch, CiShoppingCart } from 'react-icons/ci';
 import { Link, useNavigate } from 'react-router-dom'; // Import Link and useNavigate
+
 import { products } from '../data/data.js'; // Import products from data.js
 import Login from './Login'
 
 import { useCart } from '../App';
+import ProxyImage from '../proxy/ProxyImage.js';
 
 
 async function getAllProducts(){
@@ -21,7 +23,7 @@ async function getAllProducts(){
       }
 }
 
-const Main =  () => {
+const Main = () => {
 
     const [Products, setProducts] = useState([])
     const [loading, setLoading] = useState(true);
@@ -129,29 +131,27 @@ const Main =  () => {
             </div>
             <div className='products grid grid-cols-2 xl:grid-cols-3 gap-9 p-4 z-20'>
                 {filteredProducts && filteredProducts.map((product,idx)=>{
-                    return(
-                        <div key={idx} className='product h-[300px] bg-white drop-shadow-2x1 p-2 border'>
-                        <img src={product.nameOfImage} alt="" className='w-full h-[60%] object-cover p-2'/>
-                        <div className='m-2 bg-gray-100 p-2'>
-                            
-                            <Link to= {`/product/${product.name}`} onClick={() => handleProductDetails(product)}>
-                            <h1 className='text-xl font-semibold'>{product.name}</h1>
-                            </Link>
-                            <p className='text-sm'>{product.description}</p>
-                            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                                <div>
-                                    <p className='text-xl font-bold'>{product.price}.00</p>
-                                </div>
-                                <div className='pr-5'>
-                                    <Link onClick={() => handleAddToCart(product)}>
-                                        <CiShoppingCart size={'2rem'}/>
-                                    </Link>
-                                </div>
-                                
-                            </div>
-                        </div>
-                    </div>
-                    )
+                     <div key={idx} className='product h-[300px] bg-white drop-shadow-2x1 p-2 border'>
+                     <ProductImage key={idx} product={product}/> 
+                     <div className='m-2 bg-gray-100 p-2'>
+                         
+                         <Link to= {`/product/${product.name}`} onClick={() => handleProductDetails(product)}>
+                         <h1 className='text-xl font-semibold'>{product.name}</h1>
+                         </Link>
+                         <p className='text-sm'>{product.description}</p>
+                         <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                             <div>
+                                 <p className='text-xl font-bold'>{product.price}.00</p>
+                             </div>
+                             <div className='pr-5'>
+                                 <Link onClick={() => handleAddToCart(product)}>
+                                     <CiShoppingCart size={'2rem'}/>
+                                 </Link>
+                             </div>
+                             
+                         </div>
+                     </div>
+                 </div>
                 })}
 
             </div>
@@ -162,6 +162,31 @@ const Main =  () => {
             )}
         </div>
 
+    )
+}
+
+function ProductImage({product}) {
+    console.log({product})
+    const [imageDataUrl, setImageDataUrl] = useState('');
+    const proxyImage = new ProxyImage();
+
+    useEffect(() => {
+        async function loadImage() {
+            try {
+            const dataUrl = await proxyImage.getImage(product.nameOfImage);
+            setImageDataUrl(dataUrl);
+            } catch (error) {
+            console.error('Error loading image:', error);
+            }
+        }
+        loadImage();
+        }, [product.nameOfImage]); // Load image when product imageUrl changes
+    
+
+    return(
+       <div>
+            {imageDataUrl && <img src={imageDataUrl} alt={product.name} className='w-full h-[60%] object-cover p-2' />}
+       </div>
     )
 }
 

@@ -10,7 +10,6 @@ export default function Product() {
  
     const {cartService, } = useCart();
 
-    console.log(cartService)
 
     const [, setShowMessage] = useState(false);
 

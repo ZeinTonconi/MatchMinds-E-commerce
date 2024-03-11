@@ -131,27 +131,29 @@ const Main = () => {
             </div>
             <div className='products grid grid-cols-2 xl:grid-cols-3 gap-9 p-4 z-20'>
                 {filteredProducts && filteredProducts.map((product,idx)=>{
-                     <div key={idx} className='product h-[300px] bg-white drop-shadow-2x1 p-2 border'>
-                     <ProductImage key={idx} product={product}/> 
-                     <div className='m-2 bg-gray-100 p-2'>
-                         
-                         <Link to= {`/product/${product.name}`} onClick={() => handleProductDetails(product)}>
-                         <h1 className='text-xl font-semibold'>{product.name}</h1>
-                         </Link>
-                         <p className='text-sm'>{product.description}</p>
-                         <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                             <div>
-                                 <p className='text-xl font-bold'>{product.price}.00</p>
-                             </div>
-                             <div className='pr-5'>
-                                 <Link onClick={() => handleAddToCart(product)}>
-                                     <CiShoppingCart size={'2rem'}/>
-                                 </Link>
-                             </div>
-                             
-                         </div>
-                     </div>
-                 </div>
+                   
+                    return  <div key={idx} className='product h-[300px] bg-white drop-shadow-2x1 p-2 border'>
+                        <img src={product.nameOfImage} alt={product.name} className='w-full h-[60%] object-cover p-2' /> 
+
+                        <div className='m-2 bg-gray-100 p-2'>
+                            
+                            <Link to= {`/product/${product.name}`} onClick={() => handleProductDetails(product)}>
+                            <h1 className='text-xl font-semibold'>{product.name}</h1>
+                            </Link>
+                            <p className='text-sm'>{product.description}</p>
+                            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                                <div>
+                                    <p className='text-xl font-bold'>{product.price}.00</p>
+                                </div>
+                                <div className='pr-5'>
+                                    <Link onClick={() => handleAddToCart(product)}>
+                                        <CiShoppingCart size={'2rem'}/>
+                                    </Link>
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
                 })}
 
             </div>

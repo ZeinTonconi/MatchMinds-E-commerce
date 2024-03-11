@@ -6,7 +6,7 @@ const addToCart = async (req, res) => {
 
     // Verificar si el usuario y el producto existen
     const user = await User.findByPk(userId);
-    const product = await Product.findByPk(productId);
+    let product = await Product.findByPk(productId)
 
     // if (!user /*|| !product*/) {
     //   return res.status(404).json({ mensaje: 'Usuario o producto no encontrado.' });
